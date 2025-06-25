@@ -11,9 +11,7 @@ from collections import defaultdict, deque
 
 class ComprehensivePlayerTrackingSystem:
     def __init__(self, model_path="best.pt"):
-        """
-        Initialize the comprehensive tracking system
-        """
+       
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.model = YOLO(model_path)
         self.model.to(self.device)
@@ -38,9 +36,6 @@ class ComprehensivePlayerTrackingSystem:
     def process_synchronized_videos(self, broadcast_path, tacticam_path,
                                     output_dir="output", max_frames=200,
                                     confidence_threshold=0.4):
-        """
-        Process both videos synchronously and perform cross-camera matching
-        """
         # Create output directory
         os.makedirs(output_dir, exist_ok=True)
 
@@ -173,9 +168,6 @@ class ComprehensivePlayerTrackingSystem:
         self.print_final_statistics()
 
     def extract_player_detections(self, results):
-        """
-        Extract detection data from YOLO results
-        """
         detections = []
         for result in results:
             boxes = result.boxes
@@ -291,9 +283,6 @@ class ComprehensivePlayerTrackingSystem:
         return annotated_frame
 
     def create_combined_view(self, frame_b, frame_t, matches):
-        """
-        Create side-by-side combined view
-        """
         h_b, w_b = frame_b.shape[:2]
         h_t, w_t = frame_t.shape[:2]
 
@@ -349,9 +338,6 @@ class ComprehensivePlayerTrackingSystem:
         print(f"Results saved to {output_dir}/")
 
     def extract_player_mappings(self):
-        """
-        Extract consistent player mappings across all frames
-        """
         # Count how often each broadcast player is matched to each tacticam player
         mapping_counts = defaultdict(lambda: defaultdict(int))
 
@@ -375,9 +361,6 @@ class ComprehensivePlayerTrackingSystem:
         return final_mappings
 
     def print_final_statistics(self):
-        """
-        Print final tracking and matching statistics
-        """
         print("\n=== Final Tracking Statistics ===")
 
         # Count unique players in each camera
