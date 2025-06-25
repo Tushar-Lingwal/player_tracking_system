@@ -14,9 +14,6 @@ class CrossCameraPlayerMatcher:
         self.motion_weight = motion_weight
 
     def extract_appearance_features(self, frame, bbox):
-        """
-        Extract appearance features from player bounding box
-        """
         x1, y1, x2, y2 = [int(coord) for coord in bbox]
 
         # Ensure bbox is within frame bounds
@@ -64,21 +61,14 @@ class CrossCameraPlayerMatcher:
         return features[:64]  # Ensure fixed size
 
     def normalize_position(self, position, frame_shape):
-        """
-        Normalize position to [0, 1] range
-        """
         x, y = position
         h, w = frame_shape[:2]
         return [x / w, y / h]
 
-    #
     def compute_similarity_matrix(self, broadcast_players, tacticam_players,
                                   broadcast_frame, tacticam_frame,
                                   broadcast_shape, tacticam_shape,
                                   output_dir=None):
-        """
-        Compute similarity matrix between players from both cameras and visualize component matrices.
-        """
         if not broadcast_players or not tacticam_players:
             return np.array([]), [], []
 
@@ -142,9 +132,6 @@ class CrossCameraPlayerMatcher:
     def match_players(self, broadcast_players, tacticam_players,
                       broadcast_frame, tacticam_frame,
                       broadcast_shape, tacticam_shape, threshold=0.5):
-        """
-        Match players between broadcast and tacticam using Hungarian algorithm
-        """
         sim_matrix, b_ids, t_ids = self.compute_similarity_matrix(
             broadcast_players, tacticam_players,
             broadcast_frame, tacticam_frame,
