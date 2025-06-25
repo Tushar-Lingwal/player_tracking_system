@@ -27,9 +27,6 @@ class PlayerTracker(BaseTracker):
         del self.disappeared[object_id]
 
     def update(self, detections, frame_id):
-        """
-        Update tracked objects with new detections
-        """
         if len(detections) == 0:
             # Mark all existing objects as disappeared
             for object_id in list(self.disappeared.keys()):
