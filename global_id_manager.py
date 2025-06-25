@@ -6,9 +6,6 @@ class GlobalIDManager:
         self.global_id_assignments = {}
 
     def assign_global_id(self, broadcast_id, tacticam_id):
-        """
-        Assign a global ID to matched players
-        """
         # Check if either player already has a global ID
         global_id = None
 
@@ -32,18 +29,12 @@ class GlobalIDManager:
         return global_id
 
     def get_global_id(self, camera_type, tracker_id):
-        """
-        Get global ID for a tracker ID
-        """
         if camera_type == 'broadcast':
             return self.broadcast_to_global.get(tracker_id, None)
         else:  # tacticam
             return self.tacticam_to_global.get(tracker_id, None)
 
     def cleanup_unused_ids(self, active_broadcast_ids, active_tacticam_ids):
-        """
-        Remove mappings for IDs that are no longer active
-        """
         # Clean broadcast mappings
         to_remove = []
         for b_id, g_id in self.broadcast_to_global.items():
