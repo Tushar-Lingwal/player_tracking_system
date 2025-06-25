@@ -1,0 +1,32 @@
+# Core dependencies for player detection and tracking
+ultralytics>=8.0.0
+opencv-python>=4.8.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+pandas>=1.5.0
+scipy>=1.9.0
+scikit-learn>=1.1.0
+
+# For video processing and analysis
+imageio>=2.22.0
+pillow>=9.0.0
+
+# For data handling and visualization
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# For GPU acceleration (CUDA)
+# Make sure you have CUDA toolkit installed
+# torch torchvision should be installed with CUDA support
+
+# Optional: For advanced tracking algorithms
+filterpy>=1.4.0
+lap>=0.4.0
+
+# For JSON handling (usually included with Python)
+# json
+
+# For file operations
+pathlib2>=2.3.0
